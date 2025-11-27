@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mood Music Player 🎧</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./music.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Mood-Based Music Player 🎧</h1>
+      <p>Face mood + language preference → Spotify playlists. Songs play via Spotify embed .</p>
+    </header>
+
+    <main>
+      <!-- LEFT: Camera + controls -->
+      <section class="camera-panel">
+        <div class="video-wrapper">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+        </div>
+
+        <div class="controls">
+          <button id="toggleCameraBtn">Start Camera</button>
+
+          <div class="status">
+            <span>Camera: <strong id="cameraStatus" class="off">OFF</strong></span>
+            <span>Model: <strong id="modelStatus" class="loading">Loading...</strong></span>
+          </div>
+
+          <div class="mood-display">
+            Mood: <span id="moodLabel">-</span>
+          </div>
+
+          <div class="language-select">
+            <label for="languageSelect">Language:</label>
+            <select id="languageSelect">
+              <option value="any">Any</option>
+              <option value="english">English</option>
+              <option value="hindi">Hindi</option>
+              <option value="urdu">Urdu</option>
+              <option value="punjabi">Punjabi</option>
+              <option value="tamil">Tamil</option>
+              <option value="telugu">Telugu</option>
+              <option value="korean">Korean (K-Pop)</option>
+              <option value="japanese">Japanese (J-Pop / Anime)</option>
+              <option value="arabic">Arabic</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Playlists + Player -->
+      <section class="music-panel">
+        <h2>Recommended Playlists</h2>
+        <p class="hint">Your mood + language controls what appears here. Click a playlist, then a track.</p>
+
+        <div id="playlistContainer" class="playlist-list"></div>
+
+        <section class="player-panel">
+          <h3>Now Playing</h3>
+          <p id="nowPlayingInfo" class="now-playing">No track selected.</p>
+
+          <!-- Spotify embed for track -->
+          <div id="embedContainer" class="embed-container">
+            <!-- iframe gets injected here -->
+          </div>
+
+          <ul id="trackList" class="track-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <small>
+        Mood detection uses Mediapipe in your browser and is just for fun. Full songs are played via Spotify’s official embedded player;
+        users must be logged into Spotify for playback.
+      </small>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
